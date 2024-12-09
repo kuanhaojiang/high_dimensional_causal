@@ -12,23 +12,23 @@ def sigmoid(x):
 def sigmoid_prime(x):
     return np.exp(-x) / (1 + np.exp(-x))**2  # Derivative of the sigmoid, used in optimization algorithms.
 
-# Logistic regression model training
-# X: Input feature matrix
-# A: Labels (target values)
-# This function trains a logistic regression model and returns the learned coefficients (beta_hat).
 def compute_beta_hat(X, A, C=1000):
-    # Logistic regression model with L2 regularization,
+    # Logistic regression model with L2 regularization.
+    # Parameters:
+    # X: Input feature matrix
+    # A: Labels (target values)
     # C: inverse of regularization parameter (high value of C reduces regularization).
     reg_model = LogisticRegression(penalty='l2', C=C, fit_intercept=False).fit(X, A)
     return reg_model.coef_.reshape(-1)
 
-# Ordinary Least Squares (OLS) for linear regression on stratified data (groups 0 and 1 in A)
-# X: Input feature matrix
-# Y: Target values
-# A: Grouping labels (0 or 1)
-# This function fits separate linear regression models for each group in A and returns the
-# estimated intercepts (alpha) and coefficients (beta) for both groups.
 def compute_OLE(X, Y, A):
+    # This function fits separate linear regression models for each group in A and returns the
+    # estimated intercepts (alpha) and coefficients (beta) for both groups.
+    # Parameters:
+    # X: Input feature matrix
+    # Y: Target values
+    # A: Grouping labels (0 or 1)
+
     # ni: Number of samples in the dataset.
     ni = X.shape[0]
     
